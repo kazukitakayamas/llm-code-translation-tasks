@@ -113,7 +113,7 @@ HuggingFaceにアップされたデータセットは[こちら](https://hugging
 ※[SFTyaml](https://github.com/kazukitakayamas/llm-code-translation-tasks/blob/main/sft/gemma-2-2b-config.yml)、[DPOyaml](https://github.com/kazukitakayamas/llm-code-translation-tasks/blob/main/dpo/gemma-2-2b-dpo.yml)  
 <br>
 
-DPOについては、下記を必ず行うこととする  
+DPOについては、下記を必ず行うこととします。  
  ・yamlをDPO用にハイパラを変更  
  ・ディレクトリ名を変える  
  ・[gemma.py](https://github.com/kazukitakayamas/llm-code-translation-tasks/blob/main/dpo/gemma.py)をsrc/axolotl/prompt_strategies/dpo内に配置する  
