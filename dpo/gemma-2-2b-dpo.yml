@@ -1,0 +1,111 @@
+# 学習のベースモデルに関する設定
+# ベースモデルには先ほどSFTしたモデルを指定
+base_model: kazuyamaa/gemma-2-2b-sft-merged
+model_type: AutoModelForCausalLM
+tokenizer_type: AutoTokenizer
+
+# 学習後のモデルのHFへのアップロードに関する設定
+hub_model_id: kazuyamaa/gemma-2-2b-code-translate-dpo-merged
+hub_strategy: "end"
+push_dataset_to_hub:
+hf_use_auth_token: true
+
+
+# Liger Kernelの設定（学習の軽量・高速化）
+plugins:
+  - axolotl.integrations.liger.LigerPlugin
+liger_cross_entropy: false
+liger_rope: true
+liger_rms_norm: true
+liger_swiglu: true
+liger_fused_linear_cross_entropy: true
+
+load_in_8bit: false
+load_in_4bit: true
+strict: false
+
+
+chat_template: tokenizer_default
+rl: dpo
+rl_beta: 10.0
+
+dpo_use_weighting: true # Optional[bool]. Whether to perform weighting.
+rpo_alpha: 1.0 # Optional[float]. Weighting of NLL term in loss from RPO paper.
+max_prompt_length: 512
+max_length: 2048
+
+datasets:
+  - path: kazuyamaa/java-to-python-rlhf-dataset-ver01
+    type: gemma.custom
+    train_on_split: train
+  - path: kazuyamaa/java-to-cpp-rlhf-dataset-ver01
+    type: gemma.custom
+    train_on_split: train
+  - path: kazuyamaa/cpp-to-python-rlhf-dataset-ver01
+    type: gemma.custom
+    train_on_split: train
+
+shuffle_merged_datasets: true
+dataset_prepared_path: /workspace/data/fft-dpo-data-gemma-2
+output_dir: /workspace/data/models/gemma-2-2b-code-translate-dpo-merged
+
+sequence_len: 2048
+sample_packing: false
+eval_sample_packing: false
+pad_to_sequence_len: true
+
+# LoRAに関する設定（フルファインチューニングしたい場合は全て空欄にする）
+adapter: qlora
+lora_model_dir:
+lora_r: 16
+lora_alpha: 32
+lora_dropout: 0.05
+lora_target_linear: true
+lora_fan_in_fan_out:
+
+wandb_project: 2b-dpo
+wandb_entity: kazukitakayamas051-securities-companies
+wandb_watch:
+wandb_name: dpo-attempt-01
+wandb_log_model:
+
+gradient_accumulation_steps: 8
+micro_batch_size: 2
+num_epochs: 1
+optimizer: paged_adamw_8bit
+lr_scheduler: cosine
+cosine_min_lr_ratio: 0.1
+learning_rate: 3e-7
+
+train_on_inputs: false
+group_by_length: false
+bf16: auto
+fp16:
+tf32: false
+
+gradient_checkpointing: true
+gradient_checkpointing_kwargs:  
+  use_reentrant: true  
+early_stopping_patience:
+auto_resume_from_checkpoints: true
+local_rank:
+logging_steps: 1
+xformers_attention:
+flash_attention: true
+
+save_strategy: steps
+save_steps: 100
+save_total_limit: 1
+
+warmup_steps: 20
+eval_steps:
+eval_batch_size:
+eval_table_size:
+eval_max_new_tokens:
+debug:
+deepspeed: /workspace/axolotl/deepspeed_configs/zero3_bf16.json
+weight_decay: 0.01
+fsdp:
+fsdp_config:
+special_tokens:
+  pad_token: <pad>
