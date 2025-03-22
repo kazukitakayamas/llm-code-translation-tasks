@@ -1,11 +1,11 @@
 # 学習のベースモデルに関する設定
 # ベースモデルには先ほどSFTしたモデルを指定
-base_model: kazuyamaa/gemma-2-2b-sft-merged
+base_model: kazuyamaa/code-trans-gemma-2-2b-sft
 model_type: AutoModelForCausalLM
 tokenizer_type: AutoTokenizer
 
 # 学習後のモデルのHFへのアップロードに関する設定
-hub_model_id: kazuyamaa/gemma-2-2b-code-translate-dpo-merged
+hub_model_id: kazuyamaa/code-trans-gemma-2-2b-dpo
 hub_strategy: "end"
 push_dataset_to_hub:
 hf_use_auth_token: true
@@ -21,7 +21,7 @@ liger_swiglu: true
 liger_fused_linear_cross_entropy: true
 
 load_in_8bit: false
-load_in_4bit: true
+load_in_4bit: false
 strict: false
 
 
@@ -47,7 +47,7 @@ datasets:
 
 shuffle_merged_datasets: true
 dataset_prepared_path: /workspace/data/fft-dpo-data-gemma-2
-output_dir: /workspace/data/models/gemma-2-2b-code-translate-dpo-merged
+output_dir: /workspace/data/models/code-trans-gemma-2-2b-dpo
 
 sequence_len: 2048
 sample_packing: false
@@ -55,18 +55,18 @@ eval_sample_packing: false
 pad_to_sequence_len: true
 
 # LoRAに関する設定（フルファインチューニングしたい場合は全て空欄にする）
-adapter: qlora
+adapter: 
 lora_model_dir:
-lora_r: 16
-lora_alpha: 32
-lora_dropout: 0.05
-lora_target_linear: true
+lora_r: 
+lora_alpha: 
+lora_dropout: 
+lora_target_linear: 
 lora_fan_in_fan_out:
 
 wandb_project: 2b-dpo
 wandb_entity: kazukitakayamas051-securities-companies
 wandb_watch:
-wandb_name: dpo-attempt-01
+wandb_name: dpo-attempt-03
 wandb_log_model:
 
 gradient_accumulation_steps: 8
