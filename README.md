@@ -75,10 +75,11 @@
 ## 2. 「SFT」&「DPO」について
 
 今回のSFTとDPOには[Axolotl](https://github.com/axolotl-ai-cloud/axolotl)というライブラリを使用しました。  
-実行には、あらかじめ用意したyamlの設定を変えるだけで簡単にSFTが出来ます。  
+実行には、あらかじめ用意したyamlの設定を変えるだけで学習が出来ます。  
+また、DeepSpeedのマルチGPUにも柔軟に対応出来るのもうれしいポイントです。  
 <br>
 
-※[SFTのyaml](https://github.com/kazukitakayamas/llm-code-translation-tasks/blob/main/sft/gemma-2-2b-config.yml)、[DPOのyaml](https://github.com/kazukitakayamas/llm-code-translation-tasks/blob/main/dpo/gemma-2-2b-dpo.yml)  
+※[SFTyaml](https://github.com/kazukitakayamas/llm-code-translation-tasks/blob/main/sft/gemma-2-2b-config.yml)、[DPOyaml](https://github.com/kazukitakayamas/llm-code-translation-tasks/blob/main/dpo/gemma-2-2b-dpo.yml)  
 ※DPOについては、yamlとディレクトリ名を変える＋[gemma.py](https://github.com/kazukitakayamas/llm-code-translation-tasks/blob/main/dpo/gemma.py)をsrc/axolotl/prompt_strategies/dpo内に配置する。
 <br>
 
