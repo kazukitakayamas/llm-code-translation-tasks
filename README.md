@@ -1,9 +1,9 @@
 # llm-code-translation-tasks
 　本リポジトリは「コード翻訳言語モデル」の開発パイプラインを実装するための一連の流れ（データセット作成からSFT、アラインメントまで）を手順化しています。  
 　尚、パイプラインの実装に関しては下記、ボタンを押下して実行ください。  
-　**※データセット等は適宜変更ください。
+　※データセット等は適宜変更ください。
 
-↓こちらのボタンをクリック（コード翻訳パイプライン）
+↓こちらのボタンをクリック（コード翻訳パイプライン）  
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/kazukitakayamas/llm-code-translation-tasks/blob/main/BELU-score-vllm-inference.ipynb)
 
 
@@ -100,5 +100,5 @@ huggingface-cli upload-large-folder Aratako/gemma-2-2b-code-translate-simpo-merg
 ## 3. パイプラインの実行
 最後に冒頭で記載した以下のパイプラインを実行することで、今回のBELUの評価を行う事が出来ます。
 
-↓こちらのボタンをクリック（コード翻訳パイプライン）
+↓こちらのボタンをクリック（コード翻訳パイプライン）  
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/kazukitakayamas/llm-code-translation-tasks/blob/main/BELU-score-vllm-inference.ipynb)
