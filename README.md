@@ -8,7 +8,6 @@
 <br>
 
 ### ■HuggingFaceに公開済みモデルはこちら  
-<br>
 
 [🤗 Access from HuggingFace SFT model](https://huggingface.co/kazuyamaa/gemma-2-2b-sft-merged)
 <br>
