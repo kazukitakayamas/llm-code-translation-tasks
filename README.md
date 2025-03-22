@@ -16,7 +16,7 @@
 <br>
 
 ### ■対象タスクと評価指標（前提）
-[CodeTransOcean]（https://github.com/WeixiangYAN/CodeTransOcean）のtest splitに対して、BELUスコアで評価を行う。  
+[CodeTransOcean](https://github.com/WeixiangYAN/CodeTransOcean)のtest splitに対して、BELUスコアで評価を行う。  
 <br>
 <br>
 
