@@ -1,6 +1,6 @@
 # llm-code-translation-tasks
-　本リポジトリは「コード翻訳言語モデル」の開発パイプラインを実装するための一連の流れ（データセット作成からSFT、アラインメントまで）を手順化しています。  
-　尚、パイプラインの実装に関しては下記、ボタンを押下して実行ください。  
+　　本リポジトリは「コード翻訳言語モデル」の開発パイプラインを実装するための一連の流れ（データセット作成からSFT、アラインメントまで）を手順化しています。  
+　　尚、パイプラインの実装に関しては下記、ボタンを押下して実行ください。  
 　※データセット等は適宜変更ください。
 
 ↓こちらのボタンをクリック（コード翻訳パイプライン）  
@@ -13,36 +13,48 @@
 今回使用するのは一般に公開済みのデータセットと合成データセットになります。
 <br>
 
-### 合成データについて
-合成データの作成コードについてはMagpieの手法を使い、生成を行っています。  
-モデルは、[codellama/CodeLlama-34b-Instruct-hf](https://huggingface.co/codellama/CodeLlama-34b-Instruct-hf)を使用しておりますが、500個のペアとなるデータを作成するのに8時間程かかりましたのでご注意ください。  
-※GPU等の実行環境に大きく依存する点についてはご承知おきください。
+### 合成データについてh2
+　合成データの作成コードについてはMagpieの手法を使い、生成を行っています。  
+　モデルは、[codellama/CodeLlama-34b-Instruct-hf](https://huggingface.co/codellama/CodeLlama-34b-Instruct-hf)を使用しておりますが、500個のペアとなるデータを作成するのに8時間程かかりましたのでご注意ください。  
+　※GPU等の実行環境に大きく依存する点についてはご承知おきください。
 
-合成データ生成のノートブックは[こちら](https://github.com/kazukitakayamas/llm-code-translation-tasks/blob/main/datasets/magpie-code-translate.ipynb)
+　合成データ生成のノートブックは[こちら](https://github.com/kazukitakayamas/llm-code-translation-tasks/blob/main/datasets/magpie-code-translate.ipynb)
 <br>
 
-### 一般公開データについて
+### 一般公開データについてh2
 
-学習に使用した一般公開データは下記の通りです。  
-これらをOpenAI Messages形式に変換し新たにMessagesキーを作りデータセットを作成しています。
+　学習に使用した一般公開データは下記の通りです。  
+　これらをOpenAI Messages形式に変換し新たにMessagesキーを作りデータセットを作成しています。
 
-また、DPOデータセットは[ziwenyd/transcoder-geeksforgeeks](https://huggingface.co/datasets/ziwenyd/transcoder-geeksforgeeks)という既に質の高い正解が用意されたデータセットがあり、今回はそれをDPO用の学習セットの元データとして採用しています。  
-具体的には、元のデータセットを二つの言語のペアとなるように分類を行い、それぞれが完全な対応関係にあるものとして、翻訳先となる言語をChosenとしています。  
+　また、DPOデータセットは[ziwenyd/transcoder-geeksforgeeks](https://huggingface.co/datasets/ziwenyd/transcoder-geeksforgeeks)という既に質の高い正解が用意されたデータセットがあり、今回はそれをDPO用の学習セットの元データとして採用しています。  
+　具体的には、元のデータセットを二つの言語のペアとなるように分類を行い、それぞれが完全な対応関係にあるものとして、翻訳先となる言語をChosenとしています。  
 それに対して、SFTを行ったモデル（今回はgemma-2-2b）で出力（推論）をさせ、それをrejectedとしてデータを作成し、翻訳元をprompt、元の翻訳先をchosen、SFTモデルの出力がrejectedとなるような配置としてデータを作成しました。
 <br>
 
 ※データセットは全て私のHuggingface内にあります。  
+<br>
 
  -SFTデータセット
-　*[WeixiangYan/CodeTransOcean](https://huggingface.co/datasets/kazuyamaa/multi-language-messages-01)
-　*[google/code_x_glue_cc_code_to_code_trans](https://huggingface.co/datasets/kazuyamaa/code-translate-google_messages)
-　*[google/code_x_glue_cc_code_refinement](https://huggingface.co/datasets/kazuyamaa/code_x_glue_cc_code_refinement_messages)
-　*[CodeTranslatorLLM/Code-Translation](https://huggingface.co/datasets/kazuyamaa/CodeTranslatorLLM-Code-Translation_messages)
+　[WeixiangYan/CodeTransOcean](https://huggingface.co/datasets/kazuyamaa/multi-language-messages-01)
+<br>
+
+　[google/code_x_glue_cc_code_to_code_trans](https://huggingface.co/datasets/kazuyamaa/code-translate-google_messages)
+<br>
+
+　[google/code_x_glue_cc_code_refinement](https://huggingface.co/datasets/kazuyamaa/code_x_glue_cc_code_refinement_messages)
+<br>
+
+　[CodeTranslatorLLM/Code-Translation](https://huggingface.co/datasets/kazuyamaa/CodeTranslatorLLM-Code-Translation_messages)
+<br>
 
  -DPOデータセット
-　*[ziwenyd/transcoder-geeksforgeeks を基に作成したC++→pythonのデータセット](https://huggingface.co/datasets/kazuyamaa/cpp-to-python-rlhf-dataset-ver01)
-　*[ziwenyd/transcoder-geeksforgeeks を基に作成したJava→C++のデータセット](https://huggingface.co/datasets/kazuyamaa/java-to-cpp-rlhf-dataset-ver01)
-　*[ziwenyd/transcoder-geeksforgeeks を基に作成したJava→Pythonのデータセット](https://huggingface.co/datasets/kazuyamaa/java-to-python-rlhf-dataset-ver01)
+　[ziwenyd/transcoder-geeksforgeeks を基に作成したC++→pythonのデータセット](https://huggingface.co/datasets/kazuyamaa/cpp-to-python-rlhf-dataset-ver01)
+<br>
+
+　[ziwenyd/transcoder-geeksforgeeks を基に作成したJava→C++のデータセット](https://huggingface.co/datasets/kazuyamaa/java-to-cpp-rlhf-dataset-ver01)
+<br>
+
+　[ziwenyd/transcoder-geeksforgeeks を基に作成したJava→Pythonのデータセット](https://huggingface.co/datasets/kazuyamaa/java-to-python-rlhf-dataset-ver01)
 <br>
 <br>
 
@@ -61,6 +73,7 @@ cd axolotl
 apt-get update
 apt-get install -y libopenmpi-dev
 ```
+<br>
 
 ### 必要ライブラリのインストール
 ```
@@ -70,27 +83,32 @@ pip install flash-attn
 pip install deepspeed
 pip install mpi4py
 ```
+<br>
 
 ### HuggingfaceとWandbにログイン（アクセス権のあるトークンに設定ください）
 ```
 huggingface-cli login --token "WRITE ME Your Token"
 wandb login "WRITE ME Your Token"
 ```
+<br>
 
 ### データの前処理の実行
 ```
 python -m axolotl.cli.preprocess gemma-2-2b-dpo.yml --debug
 ```
+<br>
 
 ### 学習の実行
 ```
 accelerate launch -m axolotl.cli.train gemma-2-2b-dpo.yml --deepspeed deepspeed_configs/zero3_bf16.json
 ```
+<br>
 
 ### LoRAアダプタのマージ
 ```
 python -m axolotl.cli.merge_lora gemma-2-2b-dpo.yml --lora-model-dir="/workspace/data/models/gemma-2-2b-code-translate-simpo-merged"
 ```
+<br>
 
 ### マージ済みのモデルをHuggingfaceへアップロード
 ```
