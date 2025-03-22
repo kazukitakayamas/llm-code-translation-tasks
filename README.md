@@ -12,7 +12,7 @@
 [🤗 Access from HuggingFace SFT model](https://huggingface.co/kazuyamaa/gemma-2-2b-sft-merged)
 <br>
 
-[🤗 Access from HuggingFace SFT model](kazuyamaa/gemma-2-2b-code-translate-dpo-merged)  
+[🤗 Access from HuggingFace DPO model](kazuyamaa/gemma-2-2b-code-translate-dpo-merged)  
 <br>
 
 ### ■対象タスクと評価指標（前提）
