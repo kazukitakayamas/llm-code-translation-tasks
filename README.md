@@ -36,7 +36,8 @@
 モデルは、[codellama/CodeLlama-34b-Instruct-hf](https://huggingface.co/codellama/CodeLlama-34b-Instruct-hf)を使用しておりますが、500個のペアとなるデータを作成するのに8時間程かかりましたのでご注意ください。  
 ※GPU等の実行環境に大きく依存する点についてはご承知おきください。
 
-合成データ生成のノートブックは[こちら](https://github.com/kazukitakayamas/llm-code-translation-tasks/blob/main/datasets/magpie-code-translate.ipynb)
+合成データ生成のノートブックは[こちら](https://github.com/kazukitakayamas/llm-code-translation-tasks/blob/main/datasets/magpie-code-translate.ipynb)  
+HuggingFaceにアップされたデータセットは[こちら](https://huggingface.co/datasets/kazuyamaa/CodeLlama-34b-Instruct-hf-synthetic-datasets)  
 <br>
 
 ### ■一般公開データについて
