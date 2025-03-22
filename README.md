@@ -114,8 +114,7 @@ cd axolotl
 
 apt-get update
 apt-get install -y libopenmpi-dev
-```
-<br>
+```  
 
 ### 必要ライブラリのインストール
 ```
@@ -124,33 +123,28 @@ pip install packaging ninja
 pip install flash-attn
 pip install deepspeed
 pip install mpi4py
-```
-<br>
+```  
 
 ### HuggingfaceとWandbにログイン（アクセス権のあるトークンに設定してください）
 ```
 huggingface-cli login --token "WRITE ME Your Token"
 wandb login "WRITE ME Your Token"
-```
-<br>
+```  
 
 ### データの前処理の実行
 ```
 python -m axolotl.cli.preprocess gemma-2-2b-dpo.yml --debug
-```
-<br>
+```  
 
 ### 学習の実行
 ```
 accelerate launch -m axolotl.cli.train gemma-2-2b-dpo.yml --deepspeed deepspeed_configs/zero3_bf16.json
-```
-<br>
+```  
 
 ### LoRAアダプタのマージ
 ```
 python -m axolotl.cli.merge_lora gemma-2-2b-dpo.yml --lora-model-dir="/workspace/data/models/gemma-2-2b-code-translate-simpo-merged"
-```
-<br>
+```  
 
 ### マージ済みのモデルをHuggingfaceへアップロード
 ```
