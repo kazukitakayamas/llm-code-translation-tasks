@@ -6,14 +6,23 @@
 ↓こちらのボタンをクリック（コード翻訳パイプライン）  
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/kazukitakayamas/llm-code-translation-tasks/blob/main/BELU-score-vllm-inference.ipynb)
 <br>
+
+### ■HuggingFaceに公開済みモデルはこちら  
+<br>
+
+[🤗 Access from HuggingFace SFT model](https://huggingface.co/kazuyamaa/gemma-2-2b-sft-merged)
+<br>
+
+[🤗 Access from HuggingFace SFT model](kazuyamaa/gemma-2-2b-code-translate-dpo-merged)
+<br>
 <br>
 
 ## 1. データセット作成手順について
 
-今回使用するのは一般に公開済みのデータセットと合成データセットになります。
+　今回使用するのは一般に公開済みのデータセットと合成データセットになります。
 <br>
 
-### 合成データについてh2
+### ■合成データについて
 　合成データの作成コードについてはMagpieの手法を使い、生成を行っています。  
 　モデルは、[codellama/CodeLlama-34b-Instruct-hf](https://huggingface.co/codellama/CodeLlama-34b-Instruct-hf)を使用しておりますが、500個のペアとなるデータを作成するのに8時間程かかりましたのでご注意ください。  
 　※GPU等の実行環境に大きく依存する点についてはご承知おきください。
@@ -21,7 +30,7 @@
 　合成データ生成のノートブックは[こちら](https://github.com/kazukitakayamas/llm-code-translation-tasks/blob/main/datasets/magpie-code-translate.ipynb)
 <br>
 
-### 一般公開データについてh2
+### ■一般公開データについて
 
 　学習に使用した一般公開データは下記の通りです。  
 　これらをOpenAI Messages形式に変換し新たにMessagesキーを作りデータセットを作成しています。
@@ -30,11 +39,14 @@
 　具体的には、元のデータセットを二つの言語のペアとなるように分類を行い、それぞれが完全な対応関係にあるものとして、翻訳先となる言語をChosenとしています。  
 それに対して、SFTを行ったモデル（今回はgemma-2-2b）で出力（推論）をさせ、それをrejectedとしてデータを作成し、翻訳元をprompt、元の翻訳先をchosen、SFTモデルの出力がrejectedとなるような配置としてデータを作成しました。
 <br>
+<br>
 
 ※データセットは全て私のHuggingface内にあります。  
 <br>
 
- -SFTデータセット
+ -SFTデータセット  
+ <br>
+
 　[WeixiangYan/CodeTransOcean](https://huggingface.co/datasets/kazuyamaa/multi-language-messages-01)
 <br>
 
@@ -47,7 +59,9 @@
 　[CodeTranslatorLLM/Code-Translation](https://huggingface.co/datasets/kazuyamaa/CodeTranslatorLLM-Code-Translation_messages)
 <br>
 
- -DPOデータセット
+ -DPOデータセット  
+ <br>
+
 　[ziwenyd/transcoder-geeksforgeeks を基に作成したC++→pythonのデータセット](https://huggingface.co/datasets/kazuyamaa/cpp-to-python-rlhf-dataset-ver01)
 <br>
 
@@ -61,7 +75,10 @@
 ## 2. 「SFT」&「DPO」について
 
 今回のSFTには[Axolotl](https://github.com/axolotl-ai-cloud/axolotl)というライブラリを使用しました。  
-実行には、あらかじめ用意した[yaml](dpo/gemma-2-2b-dpo.yml)の設定を変えるだけで簡単にSFTが出来ます。  
+実行には、あらかじめ用意したyamlの設定を変えるだけで簡単にSFTが出来ます。  
+<br>
+
+※[SFTのyaml](https://github.com/kazukitakayamas/llm-code-translation-tasks/blob/main/sft/gemma-2-2b-config.yml)、[DPOのyaml](https://github.com/kazukitakayamas/llm-code-translation-tasks/tree/main/dpo)
 ※DPOについては、yamlとディレクトリ名を変える＋[gemma.py](https://github.com/kazukitakayamas/llm-code-translation-tasks/blob/main/dpo/gemma.py)をsrc/axolotl/prompt_strategies/dpo内に配置する。
 <br>
 
@@ -116,7 +133,6 @@ cp /workspace/data/models/gemma-2-2b-code-translate-simpo-merged/README.md /work
 
 huggingface-cli upload-large-folder Aratako/gemma-2-2b-code-translate-simpo-merged-merged --repo-type=model /workspace/data/models/gemma-2-2b-code-translate-simpo-merged/merged
 ```
-<br>
 <br>
 
 ## 3. パイプラインの実行
