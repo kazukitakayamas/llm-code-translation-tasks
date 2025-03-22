@@ -1,7 +1,7 @@
 # llm-code-translation-tasks
-　　本リポジトリは「コード翻訳言語モデル」の開発パイプラインを実装するための一連の流れ（データセット作成からSFT、アラインメントまで）を手順化しています。  
-　　尚、パイプラインの実装に関しては下記、ボタンを押下して実行ください。  
-　※データセット等は適宜変更ください。
+本リポジトリは「コード翻訳言語モデル」の開発パイプラインを実装するための一連の流れ（データセット作成からSFT、アラインメントまで）を手順化しています。  
+尚、パイプラインの実装に関しては下記、ボタンを押下して実行ください。  
+※データセット等は適宜変更ください。
 
 ↓こちらのボタンをクリック（コード翻訳パイプライン）  
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/kazukitakayamas/llm-code-translation-tasks/blob/main/BELU-score-vllm-inference.ipynb)
@@ -22,29 +22,27 @@
 <br>
 
 ### ■合成データについて
-　合成データの作成コードについてはMagpieの手法を使い、生成を行っています。  
-　モデルは、[codellama/CodeLlama-34b-Instruct-hf](https://huggingface.co/codellama/CodeLlama-34b-Instruct-hf)を使用しておりますが、500個のペアとなるデータを作成するのに8時間程かかりましたのでご注意ください。  
-　※GPU等の実行環境に大きく依存する点についてはご承知おきください。
+合成データの作成コードについてはMagpieの手法を使い、生成を行っています。  
+モデルは、[codellama/CodeLlama-34b-Instruct-hf](https://huggingface.co/codellama/CodeLlama-34b-Instruct-hf)を使用しておりますが、500個のペアとなるデータを作成するのに8時間程かかりましたのでご注意ください。  
+※GPU等の実行環境に大きく依存する点についてはご承知おきください。
 
-　合成データ生成のノートブックは[こちら](https://github.com/kazukitakayamas/llm-code-translation-tasks/blob/main/datasets/magpie-code-translate.ipynb)
+合成データ生成のノートブックは[こちら](https://github.com/kazukitakayamas/llm-code-translation-tasks/blob/main/datasets/magpie-code-translate.ipynb)
 <br>
 
 ### ■一般公開データについて
 
-　学習に使用した一般公開データは下記の通りです。  
-　これらをOpenAI Messages形式に変換し新たにMessagesキーを作りデータセットを作成しています。
+学習に使用した一般公開データは下記の通りです。  
+これらをOpenAI Messages形式に変換し新たにMessagesキーを作りデータセットを作成しています。
 
-　また、DPOデータセットは[ziwenyd/transcoder-geeksforgeeks](https://huggingface.co/datasets/ziwenyd/transcoder-geeksforgeeks)という既に質の高い正解が用意されたデータセットがあり、今回はそれをDPO用の学習セットの元データとして採用しています。  
-　具体的には、元のデータセットを二つの言語のペアとなるように分類を行い、それぞれが完全な対応関係にあるものとして、翻訳先となる言語をChosenとしています。  
+また、DPOデータセットは[ziwenyd/transcoder-geeksforgeeks](https://huggingface.co/datasets/ziwenyd/transcoder-geeksforgeeks)という既に質の高い正解が用意されたデータセットがあり、今回はそれをDPO用の学習セットの元データとして採用しています。  
+具体的には、元のデータセットを二つの言語のペアとなるように分類を行い、それぞれが完全な対応関係にあるものとして、翻訳先となる言語をChosenとしています。  
 それに対して、SFTを行ったモデル（今回はgemma-2-2b）で出力（推論）をさせ、それをrejectedとしてデータを作成し、翻訳元をprompt、元の翻訳先をchosen、SFTモデルの出力がrejectedとなるような配置としてデータを作成しました。
-<br>
 <br>
 
 ※データセットは全て私のHuggingface内にあります。  
 <br>
 
  -SFTデータセット  
- <br>
 
 　[WeixiangYan/CodeTransOcean](https://huggingface.co/datasets/kazuyamaa/multi-language-messages-01)
 <br>
@@ -59,7 +57,6 @@
 <br>
 
  -DPOデータセット  
- <br>
 
 　[ziwenyd/transcoder-geeksforgeeks を基に作成したC++→pythonのデータセット](https://huggingface.co/datasets/kazuyamaa/cpp-to-python-rlhf-dataset-ver01)
 <br>
