@@ -11,15 +11,14 @@
 ### ■HuggingFaceに公開済みモデルはこちら  
 
 -LoRAパラメーターチューニングモデル  
-**[🤗 Access from HuggingFace SFT model](https://huggingface.co/kazuyamaa/gemma-2-2b-sft-merged)**    
+**[🤗 Access from HuggingFace SFT model](https://huggingface.co/kazuyamaa/gemma-2-2b-sft-merged)**  
 
-**[🤗 Access from HuggingFace DPO model](https://huggingface.co/kazuyamaa/gemma-2-2b-code-translate-dpo-merged)**    
-<br>
+**[🤗 Access from HuggingFace DPO model](https://huggingface.co/kazuyamaa/gemma-2-2b-code-translate-dpo-merged)**  
 
 -フルパラメータ―チューニングモデル  
 **[🤗 Access from HuggingFace SFT model](https://huggingface.co/kazuyamaa/code-trans-gemma-2-2b-sft)**  
 
-**[🤗 Access from HuggingFace DPO model](https://huggingface.co/kazuyamaa/code-trans-gemma-2-2b-dpo)**    
+**[🤗 Access from HuggingFace DPO model](https://huggingface.co/kazuyamaa/code-trans-gemma-2-2b-dpo)**  
 <br>
 
 ### ■対象タスクと評価指標（前提）
