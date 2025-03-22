@@ -138,19 +138,19 @@ python -m axolotl.cli.preprocess gemma-2-2b-dpo.yml --debug
 
 ### 学習の実行
 ```
-accelerate launch -m axolotl.cli.train gemma-2-2b-dpo.yml --deepspeed deepspeed_configs/zero3_bf16.json
+accelerate launch -m axolotl.cli.train gemma-2-2b-config-ver001.yml --deepspeed deepspeed_configs/zero3_bf16.json
 ```  
 
 ### LoRAアダプタのマージ
 ```
-python -m axolotl.cli.merge_lora gemma-2-2b-dpo.yml --lora-model-dir="/workspace/data/models/gemma-2-2b-code-translate-simpo-merged"
+python -m axolotl.cli.merge_lora gemma-2-2b-dpo.yml --lora-model-dir="/workspace/data/models/code-trans-gemma-2-2b-sft-ver01"
 ```  
 
 ### マージ済みのモデルをHuggingfaceへアップロード
 ```
-cp /workspace/data/models/gemma-2-2b-code-translate-simpo-merged/README.md /workspace/data/models/gemma-2-2b-code-translate-simpo-merged/merged
+cp /workspace/data/models/code-trans-gemma-2-2b-sft-ver01/README.md /workspace/data/models/code-trans-gemma-2-2b-sft-ver01/merged
 
-huggingface-cli upload-large-folder Aratako/gemma-2-2b-code-translate-simpo-merged-merged --repo-type=model /workspace/data/models/gemma-2-2b-code-translate-simpo-merged/merged
+huggingface-cli upload-large-folder kazuyamaa/code-trans-gemma-2-2b-sft-ver01 --repo-type=model /workspace/data/models/code-trans-gemma-2-2b-sft-ver01/merged
 ```
 <br>
 
