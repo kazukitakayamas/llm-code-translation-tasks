@@ -2,21 +2,27 @@
 本リポジトリは「コード翻訳言語モデル」の開発パイプラインを実装するための一連の流れ（データセット作成からSFT、アラインメントまで）を手順化しています。  
 尚、パイプラインの実装に関しては下記、ボタンを押下してご確認ください。  
 ※データセット等は適宜変更ください。
+<br>
 
-↓こちらのボタンをクリック（コード翻訳パイプライン）  
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/kazukitakayamas/llm-code-translation-tasks/blob/main/BELU-score-vllm-inference.ipynb)
+**[![Open In Colab (コード翻訳パイプライン)](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/kazukitakayamas/llm-code-translation-tasks/blob/main/BELU-score-vllm-inference.ipynb)**
 <br>
 
 ### ■HuggingFaceに公開済みモデルはこちら  
 
-[🤗 Access from HuggingFace SFT model](https://huggingface.co/kazuyamaa/gemma-2-2b-sft-merged)
+-LoRAパラメーターチューニングモデル
+**[🤗 Access from HuggingFace SFT model](https://huggingface.co/kazuyamaa/gemma-2-2b-sft-merged)**    
+
+**[🤗 Access from HuggingFace DPO model](https://huggingface.co/kazuyamaa/gemma-2-2b-code-translate-dpo-merged)**    
 <br>
 
-[🤗 Access from HuggingFace DPO model](https://huggingface.co/kazuyamaa/gemma-2-2b-code-translate-dpo-merged)  
+-フルパラメータ―チューニングモデル
+**[🤗 Access from HuggingFace SFT model](https://huggingface.co/kazuyamaa/code-trans-gemma-2-2b-sft)**  
+
+**[🤗 Access from HuggingFace DPO model](https://huggingface.co/kazuyamaa/code-trans-gemma-2-2b-dpo)**    
 <br>
 
 ### ■対象タスクと評価指標（前提）
-[CodeTransOcean](https://github.com/WeixiangYAN/CodeTransOcean)のtest splitに対して、BELUスコアで評価を行う。  
+**[CodeTransOcean](https://github.com/WeixiangYAN/CodeTransOcean)** のtest splitに対して、BELUスコアで評価を行う。  
 <br>
 <br>
 
@@ -154,8 +160,7 @@ huggingface-cli upload-large-folder kazuyamaa/code-trans-gemma-2-2b-sft-ver01 --
 ```
 <br>
 
-## 3. パイプラインの実行
-最後に冒頭で記載した以下のパイプラインを実行することで、今回のBELUの評価を行う事が出来ます。
-
-↓こちらのボタンをクリック（コード翻訳パイプライン）  
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/kazukitakayamas/llm-code-translation-tasks/blob/main/BELU-score-vllm-inference.ipynb)
+## 3. パイプラインの実行  
+最後に冒頭で記載した以下のパイプラインを実行することで、今回のBELUの評価を行う事が出来ます。  
+  
+**[![Open In Colab (コード翻訳パイプライン)](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/kazukitakayamas/llm-code-translation-tasks/blob/main/BELU-score-vllm-inference.ipynb)**
