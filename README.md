@@ -111,11 +111,13 @@ HuggingFaceにアップされたデータセットは[こちら](https://hugging
 また、DeepSpeedのマルチGPUにも柔軟に対応出来るのもうれしいポイントです。  
 
 ※[SFTyaml](https://github.com/kazukitakayamas/llm-code-translation-tasks/blob/main/sft/gemma-2-2b-config.yml)、[DPOyaml](https://github.com/kazukitakayamas/llm-code-translation-tasks/blob/main/dpo/gemma-2-2b-dpo.yml)  
-※DPOについては、下記を必ず行うこととする  
+<br>
+
+DPOについては、下記を必ず行うこととする  
  ・yamlをDPO用にハイパラを変更  
  ・ディレクトリ名を変える  
  ・[gemma.py](https://github.com/kazukitakayamas/llm-code-translation-tasks/blob/main/dpo/gemma.py)をsrc/axolotl/prompt_strategies/dpo内に配置する  
- ・[trainer.py](https://github.com/kazukitakayamas/llm-code-translation-tasks/blob/main/dpo/trainer.py)をsrc/axolotl/core/trainers/dpo内にあるtrainer.pyと入れ替えて配置する※これはTransforemerのバージョン不一致による影響
+ ・[trainer.py](https://github.com/kazukitakayamas/llm-code-translation-tasks/blob/main/dpo/trainer.py)をsrc/axolotl/core/trainers/dpo内にあるtrainer.pyと入れ替えて配置する※これはTransforemerのバージョン不一致による影響  
 <br>
 
 ### 環境構築
