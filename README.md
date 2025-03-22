@@ -1,4 +1,4 @@
-# llm-code-translation-tasks
+# 「コード翻訳言語モデル」の開発パイプラインの実装手順
 本リポジトリは「コード翻訳言語モデル」の開発パイプラインを実装するための一連の流れ（データセット作成からSFT、アラインメントまで）を手順化しています。  
 尚、パイプラインの実装に関しては下記、ボタンを押下して実行ください。  
 ※データセット等は適宜変更ください。
@@ -13,6 +13,10 @@
 <br>
 
 [🤗 Access from HuggingFace SFT model](kazuyamaa/gemma-2-2b-code-translate-dpo-merged)
+<br>
+
+### ■対象タスクと評価指標（前提）
+[CodeTransOcean]（https://github.com/WeixiangYAN/CodeTransOcean）のtest splitに対して、BELUスコアで評価を行う。  
 <br>
 <br>
 
@@ -70,11 +74,11 @@
 
 ## 2. 「SFT」&「DPO」について
 
-今回のSFTには[Axolotl](https://github.com/axolotl-ai-cloud/axolotl)というライブラリを使用しました。  
+今回のSFTとDPOには[Axolotl](https://github.com/axolotl-ai-cloud/axolotl)というライブラリを使用しました。  
 実行には、あらかじめ用意したyamlの設定を変えるだけで簡単にSFTが出来ます。  
 <br>
 
-※[SFTのyaml](https://github.com/kazukitakayamas/llm-code-translation-tasks/blob/main/sft/gemma-2-2b-config.yml)、[DPOのyaml](https://github.com/kazukitakayamas/llm-code-translation-tasks/tree/main/dpo)
+※[SFTのyaml](https://github.com/kazukitakayamas/llm-code-translation-tasks/blob/main/sft/gemma-2-2b-config.yml)、[DPOのyaml](https://github.com/kazukitakayamas/llm-code-translation-tasks/blob/main/dpo/gemma-2-2b-dpo.yml)  
 ※DPOについては、yamlとディレクトリ名を変える＋[gemma.py](https://github.com/kazukitakayamas/llm-code-translation-tasks/blob/main/dpo/gemma.py)をsrc/axolotl/prompt_strategies/dpo内に配置する。
 <br>
 
