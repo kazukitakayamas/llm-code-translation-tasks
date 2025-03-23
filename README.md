@@ -45,7 +45,7 @@ HuggingFaceにアップされたデータセットは[こちら](https://hugging
 学習に使用した一般公開データは下記の通りです。  
 これらをOpenAI Messages形式に変換し新たにMessagesキーを作りデータセットを作成しています。
 
-また、DPOデータセットは[ziwenyd/transcoder-geeksforgeeks](https://huggingface.co/datasets/ziwenyd/transcoder-geeksforgeeks)という既に質の高い正解が用意されたデータセットがあり、今回はそれをDPO用の学習セットの元データとして採用しています。  
+また、DPOデータセットは[ziwenyd/transcoder-geeksforgeeks](https://huggingface.co/datasets/ziwenyd/transcoder-geeksforgeeks)というある程度の質のデータセットがあり、今回はそれをDPO用の学習セットの元データとして採用しています。  
 具体的には、元のデータセットを二つの言語のペアとなるように分類を行い、それぞれが完全な対応関係にあるものとして、翻訳先となる言語をChosenとしています。  
 それに対して、SFTを行ったモデル（今回はgemma-2-2b）で出力（推論）をさせ、それをrejectedとしてデータを作成し、翻訳元をprompt、元の翻訳先をchosen、SFTモデルの出力がrejectedとなるような配置としてデータを作成しました。
 <br>
