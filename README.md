@@ -156,7 +156,7 @@ accelerate launch -m axolotl.cli.train gemma-2-2b-config-ver001.yml --deepspeed 
 
 ### LoRAアダプタのマージ
 ```
-python -m axolotl.cli.merge_lora gemma-2-2b-dpo.yml --lora-model-dir="/workspace/data/models/code-trans-gemma-2-2b-sft-ver01"
+python -m axolotl.cli.merge_lora gemma-2-2b-config-ver001.yml --lora-model-dir="/workspace/data/models/code-trans-gemma-2-2b-sft-ver01"
 ```  
 
 ### マージ済みのモデルをHuggingfaceへアップロード
