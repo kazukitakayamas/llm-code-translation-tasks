@@ -4,8 +4,8 @@
 ※データセット等は適宜変更ください。
 <br>
 
-↓コード翻訳パイプラインは下記ノートブックより実行してください  
-**[![Open In Colab (コード翻訳パイプライン)](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/kazukitakayamas/llm-code-translation-tasks/blob/main/BELU-score-vllm-inference.ipynb)**
+↓コード翻訳は下記ノートブックより実行してください  
+**[![Open In Colab (コード翻訳)](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/kazukitakayamas/llm-code-translation-tasks/blob/main/BELU-score-vllm-inference.ipynb)**
 <br>
 
 ### ■HuggingFaceに公開済みモデルはこちら  
@@ -171,5 +171,5 @@ huggingface-cli upload-large-folder kazuyamaa/code-trans-gemma-2-2b-sft-ver01 --
 ## 3. パイプラインの実行  
 最後に冒頭で記載した以下のパイプラインを実行することで、今回のBELUの評価を行う事が出来ます。  
 
-↓コード翻訳パイプラインは下記ノートブックより実行してください  
-**[![Open In Colab (コード翻訳パイプライン)](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/kazukitakayamas/llm-code-translation-tasks/blob/main/BELU-score-vllm-inference.ipynb)**
+↓コード翻訳は下記ノートブックより実行してください  
+**[![Open In Colab (コード翻訳)](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/kazukitakayamas/llm-code-translation-tasks/blob/main/BELU-score-vllm-inference.ipynb)**
